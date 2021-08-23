@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Container, Col, Row, Card, Form, Button } from 'react-bootstrap'
 
 function Login() {
   const [user, setUser] = useState({ name: '', phone: '', pin: '' })
@@ -41,63 +42,124 @@ function Login() {
   }
 
   return (
-    <>
-      <section>
-        <h1>Login</h1>
-        <input
-          type='number'
-          name='phone'
-          placeholder='Phone number'
-          max={9999999999}
-          onChange={(e) => {
-            setUserDetails(e)
-          }}
-        />
-        <input
-          type='number'
-          name='pin'
-          placeholder='4 digit PIN'
-          max={9999}
-          onChange={(e) => setUserDetails(e)}
-        />
-        <button type='button' className='' onClick={() => submitForm('login')}>
-          Login
-        </button>
-      </section>
+    <Container fluid='md' className='mt-5'>
+      <Row>
+        <Col md={5}>
+          <Card>
+            <Card.Body>
+              <Card.Title>Login</Card.Title>
+              <Card.Subtitle className='mb-2 text-muted'>
+                For already registered users
+              </Card.Subtitle>
+              <Form className='mt-4'>
+                <Form.Group className='mb-3' controlId='formBasicEmail'>
+                  <Form.Label>Phone Number</Form.Label>
+                  <Form.Control
+                    name='phone'
+                    type='number'
+                    placeholder='Enter phone number'
+                    max={9999999999}
+                    onChange={(e) => {
+                      setUserDetails(e)
+                    }}
+                  />
+                  <Form.Text className='text-muted'>
+                    We'll never share your phone number with anyone else.
+                  </Form.Text>
+                </Form.Group>
 
-      <section>OR</section>
+                <Form.Group className='mb-3' controlId='formBasicPassword'>
+                  <Form.Label>PIN</Form.Label>
+                  <Form.Control
+                    type='password'
+                    name='pin'
+                    placeholder='4 digit PIN'
+                    max={9999}
+                    onChange={(e) => setUserDetails(e)}
+                  />
+                </Form.Group>
 
-      <section>
-        <h1>Register</h1>
-        <input
-          type='text'
-          name='name'
-          placeholder='Name'
-          onChange={(e) => setUserDetails(e)}
-        />
-        <input
-          type='number'
-          name='phone'
-          placeholder='Phone number'
-          max={9999999999}
-          onChange={(e) => setUserDetails(e)}
-        />
-        <input
-          type='number'
-          name='pin'
-          placeholder='4 digit PIN'
-          max={9999}
-          onChange={(e) => setUserDetails(e)}
-        />
-        <button
-          type='button'
-          className=''
-          onClick={() => submitForm('register')}
-        >
-          Register
-        </button>
-      </section>
-    </>
+                <Button
+                  variant='success'
+                  type='button'
+                  onClick={() => submitForm('login')}
+                >
+                  Login
+                </Button>
+              </Form>
+            </Card.Body>
+          </Card>
+        </Col>
+
+        <Col md={2}>
+          <Card>
+            <Card.Body>
+              <Card.Title>or</Card.Title>
+            </Card.Body>
+          </Card>
+        </Col>
+
+        <Col md={5}>
+          <Card>
+            <Card.Body>
+              <Card.Title>Register</Card.Title>
+              <Card.Subtitle className='mb-2 text-muted'>
+                For un-registered users
+              </Card.Subtitle>
+
+              <Form className='mt-4'>
+                <Form.Group className='mb-3' controlId='formBasicEmail'>
+                  <Form.Label>Full name</Form.Label>
+                  <Form.Control
+                    name='name'
+                    type='text'
+                    placeholder='Enter your full name'
+                    onChange={(e) => {
+                      setUserDetails(e)
+                    }}
+                  />
+                </Form.Group>
+
+                <Form.Group className='mb-3' controlId='formBasicEmail'>
+                  <Form.Label>Phone Number</Form.Label>
+                  <Form.Control
+                    name='phone'
+                    type='number'
+                    placeholder='Enter phone number'
+                    max={9999999999}
+                    onChange={(e) => {
+                      setUserDetails(e)
+                    }}
+                  />
+                  <Form.Text className='text-muted'>
+                    We'll never share your phone number with anyone else.
+                  </Form.Text>
+                </Form.Group>
+
+                <Form.Group className='mb-3' controlId='formBasicPassword'>
+                  <Form.Label>PIN</Form.Label>
+                  <Form.Control
+                    type='password'
+                    name='pin'
+                    placeholder='4 digit PIN'
+                    max={9999}
+                    onChange={(e) => setUserDetails(e)}
+                  />
+                </Form.Group>
+
+                <Button
+                  variant='primary'
+                  type='button'
+                  onClick={() => submitForm('register')}
+                >
+                  Register
+                </Button>
+              </Form>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
   )
 }
 export default Login
